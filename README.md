@@ -179,7 +179,12 @@ Supports Prismic **Preview Mode** for local dev.
 
 This project is for **educational purposes only** and is **not affiliated with or endorsed by** [Prismic](https://www.linkedin.com/company/prismic-io/), Next.js, or any other third-party tools mentioned. 
 
-#### 🎥 Inspired by the tutorial: **Learn Next.js 15, GSAP, Three.js and Prismic to build a 3D skateboard website** by **Prismic** 📺 [Watch on YouTube](https://youtu.be/R7l4uVMWRF0?si=c-CCvosQyEWFlcmb) All trademarks and assets belong to their respective owners.
+#### 🎥 Inspired by the tutorial: 
+**Learn Next.js 15, GSAP, Three.js and Prismic to build a 3D skateboard website** by **Prismic** 
+
+📺 [Watch on YouTube](https://youtu.be/R7l4uVMWRF0?si=c-CCvosQyEWFlcmb) 
+
+All trademarks and assets belong to their respective owners.
 
 ---
 
