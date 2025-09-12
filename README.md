@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <a href="https://nimbus-keyboards.vercel.app/" target="_blank">
+  <a href="" target="_blank">
     <img src="public/Readme/nimbusThumbnail.jpg" alt="Project Banner">
   </a>
   <br />
@@ -26,7 +26,7 @@
 
   <br />
 
-  <a href="https://nimbus-keyboards.vercel.app/" target="_blank">
+  <a href="" target="_blank">
     <img src="https://img.shields.io/badge/🚀%20Live%20Demo-brightgreen?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   </a>
   <br />
