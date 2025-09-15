@@ -16,12 +16,13 @@
     <img src="https://img.shields.io/badge/-GSAP-FF6600?style=for-the-badge&logoColor=white" />
     <img src="https://img.shields.io/badge/-SliceMachine-0078D7?style=for-the-badge&logoColor=white" />
     <img src="https://img.shields.io/badge/-clsx-6C757D?style=for-the-badge&logoColor=white" />
+    <img src="https://img.shields.io/badge/-Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white" />
   </div>
 
   <div align="center">
     <h3>⌨️ Nimbus Keyboards</h3>
-    An interactive, modern keyboard showcase with <b>3D animations</b> using <b>Next.js 15, TailwindCSS, Prismic CMS, and React Three Fiber</b>.<br/>
-    <i>Built step by step with Slice Machine and GSAP for smooth animations.</i>
+    An interactive, modern keyboard showcase with <b>3D animations</b> & <b>Stripe-powered payments</b> using <b>Next.js 15, TailwindCSS, Prismic CMS, and React Three Fiber</b>.<br/>
+    <i>Built step by step with Slice Machine, GSAP animations, and secure checkout flow.</i>
   </div>
 
   <br />
@@ -49,7 +50,9 @@
 
 ## ✨ Introduction
 
-Nimbus Keyboards is a **3D interactive keyboard showcase** website. Users can explore keyboard models, switch types, and keycaps in 3D with smooth animations. The site leverages **Next.js 15**, **TailwindCSS**, **Prismic CMS**, and **React Three Fiber** to deliver immersive interactions and content-driven layouts.
+Nimbus Keyboards is a **3D interactive keyboard showcase** website. Users can explore keyboard models, switch types, and keycaps in 3D with smooth animations. The site also integrates **Stripe Checkout** for secure, real-world payment flows — making it a **mini e-commerce experience**.
+
+It leverages **Next.js 15**, **TailwindCSS**, **Prismic CMS**, and **React Three Fiber** to deliver immersive interactions and content-driven layouts.
 
 ---
 
@@ -86,6 +89,10 @@ Nimbus Keyboards is a **3D interactive keyboard showcase** website. Users can ex
 - **React Three Fiber** – React renderer for Three.js.
 - **[@react-three/drei](https://github.com/pmndrs/drei)** – Helpers & controls for React Three Fiber.
 
+#### 💳 Payments
+
+- **[Stripe Checkout](https://stripe.com/checkout)** – Secure payment gateway for checkout flows.
+
 #### 🧹 Tooling
 
 - **ESLint** + `eslint-config-next` – Linting and code quality.
@@ -102,6 +109,7 @@ Nimbus Keyboards is a **3D interactive keyboard showcase** website. Users can ex
 - **Keycap Changer** – Visualize custom keycap sets in real-time.
 - **Dynamic Content** – Manage content via Prismic CMS.
 - **Smooth Animations** – Powered by GSAP timelines and ScrollTrigger.
+- **Secure Payments** – Stripe Checkout integration for real transactions.
 - **Responsive Design** – Desktop, tablet, and mobile friendly.
 
 ---
@@ -113,6 +121,7 @@ Nimbus Keyboards is a **3D interactive keyboard showcase** website. Users can ex
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
+- Stripe account (for testing checkout flow)
 
 ### Clone the Project
 
@@ -125,6 +134,15 @@ cd Nimbus-Keyboards
 
 ```bash
 npm install
+```
+
+### Set Environment Variables
+
+Create a `.env.local` file and add your **Stripe keys**:
+
+```bash
+STRIPE_PUBLIC_KEY=your_public_key
+STRIPE_SECRET_KEY=your_secret_key
 ```
 
 ### Run Development Server
@@ -149,6 +167,7 @@ Visit [http://localhost:3000](http://localhost:3000) to view the project.
 | `components/Footer.tsx`  | Footer with links and branding                      |
 | `components/Loader.tsx`  | Loader animation for 3D canvas                      |
 | `components/Scene.tsx`   | 3D scene for keyboards using React Three Fiber      |
+| `utils/stripe.ts`        | Stripe checkout configuration & helpers             |
 
 ---
 
@@ -175,14 +194,15 @@ Supports Prismic **Preview Mode** for local dev.
 
 ---
 
-## 📄 License 
+## 📄 License
 
-This project is for **educational purposes only** and is **not affiliated with or endorsed by** [Prismic](https://www.linkedin.com/company/prismic-io/), Next.js, or any other third-party tools mentioned. 
+This project is for **educational purposes only** and is **not affiliated with or endorsed by** [Prismic](https://www.linkedin.com/company/prismic-io/), Next.js, Stripe, or any other third-party tools mentioned.
 
-#### 🎥 Inspired by the tutorial: 
-**Learn Next.js 15, GSAP, Three.js and Prismic to build a 3D skateboard website** by **Prismic** 
+#### 🎥 Inspired by the tutorial:
 
-📺 [Watch on YouTube](https://youtu.be/R7l4uVMWRF0?si=c-CCvosQyEWFlcmb) 
+**Learn Next.js 15, GSAP, Three.js and Prismic to build a 3D skateboard website** by **Prismic**
+
+📺 [Watch on YouTube](https://youtu.be/R7l4uVMWRF0?si=c-CCvosQyEWFlcmb)
 
 All trademarks and assets belong to their respective owners.
 
@@ -193,4 +213,3 @@ All trademarks and assets belong to their respective owners.
 If you liked this project, **give it a ⭐** and share it with your network!
 
 ---
-
