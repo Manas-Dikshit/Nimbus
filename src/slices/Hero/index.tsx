@@ -140,7 +140,15 @@ const Hero: FC<HeroProps> = ({ slice }) => {
               }}
             />
           </div>
-          <button className="font-bold-slanted group flex w-fit cursor-pointer items-center gap-1 rounded bg-[#01A7E1] px-3 py-1 text-2xl uppercase transition disabled:grayscale">
+
+          <button
+            onClick={() => {
+              document
+                .getElementById("buy-button")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="font-bold-slanted group flex w-fit cursor-pointer items-center gap-1 rounded bg-[#01A7E1] px-3 py-1 text-2xl uppercase transition disabled:grayscale"
+          >
             {slice.primary.buy_button_text}
             <span className="transition group-hover:translate-x-1">{">"}</span>
           </button>
