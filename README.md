@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <a href="" target="_blank">
+  <a href="https://github.com/Itssanthoshhere/Nimbus-Keyboard-3D" target="_blank">
     <img src="public/Readme/nimbusThumbnail.jpg" alt="Project Banner">
   </a>
   <br />
@@ -26,7 +26,7 @@
 
   <br />
 
-  <a href="" target="_blank">
+  <a href="https://nimbus-keyboard-3-d.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/🚀%20Live%20Demo-brightgreen?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   </a>
   <br />
@@ -117,7 +117,7 @@ Nimbus Keyboards is a **3D interactive keyboard showcase** website. Users can ex
 ### Clone the Project
 
 ```bash
-git clone https://github.com/Itssanthoshhere/Nimbus-Keyboards.git
+git clone https://github.com/Itssanthoshhere/Nimbus-Keyboard-3D.git
 cd Nimbus-Keyboards
 ```
 
