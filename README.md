@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <a href="https://github.com/Itssanthoshhere/Nimbus-Keyboard-3D" target="_blank">
+  <a href="https://github.com/Manas-Dikshit/Nimbus" target="_blank">
     
   </a>
   <br />
@@ -124,8 +124,8 @@ It leverages **Next.js 15**, **TailwindCSS**, **Prismic CMS**, and **React Three
 ### Clone the Project
 
 ```bash
-git clone https://github.com/Itssanthoshhere/Nimbus-Keyboard-3D.git
-cd Nimbus-Keyboards
+git clone https://github.com/Manas-Dikshit/Nimbus
+cd Nimbus
 ```
 
 ### Install Dependencies
