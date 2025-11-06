@@ -27,9 +27,7 @@
 
   <br />
 
-  <a href="https://nimbus-keyboard-3-d.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/🚀%20Live%20Demo-brightgreen?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
-  </a>
+  
   <br />
 </div>
 
@@ -44,7 +42,7 @@
 5. 🧱 [Project Structure](#project-structure)
 6. 📝 [Customization](#customization)
 7. 📄 [License](#license)
-8. 🔗 [Contacts](#contacts)
+
 
 ---
 
