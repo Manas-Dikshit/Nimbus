@@ -184,10 +184,3 @@ Supports Prismic **Preview Mode** for local dev.
 🔗 [Preview Drafts in Next.js](https://prismic.io/docs/technologies/preview-content-nextjs)
 
 ---
-
-
-#### ⭐ Show Your Support
-
-If you liked this project, **give it a ⭐** and share it with your network!
-
----
