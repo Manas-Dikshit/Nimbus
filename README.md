@@ -1,7 +1,7 @@
 <div align="center">
   <br />
   <a href="https://github.com/Itssanthoshhere/Nimbus-Keyboard-3D" target="_blank">
-    <img src="public/Readme/nimbusThumbnail.jpg" alt="Project Banner">
+    
   </a>
   <br />
 
