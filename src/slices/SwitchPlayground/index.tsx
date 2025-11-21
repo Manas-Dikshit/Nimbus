@@ -11,8 +11,10 @@ import { Bounded } from "@/components/Bounded";
 import { FadeIn } from "@/components/FadeIn";
 import clsx from "clsx";
 import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
 import { SOUND_MAP, Switch } from "@/components/Switch";
-import { Stage } from "@react-three/drei";
+import { Stage, AdaptiveDpr, AdaptiveEvents, Preload, Html } from "@react-three/drei";
+import { Loader } from "@/components/Loader";
 import gsap from "gsap";
 import { LuVolume2 } from "react-icons/lu";
 
@@ -79,12 +81,17 @@ const SharedCanvas = ({ color }: SharedCanvasProps) => {
     black: "bg-gray-900",
   }[colorName];
 
-  const handleSound = () => {
+  const handleSound = async () => {
     const selectedSound = gsap.utils.random(SOUND_MAP[colorName]);
 
     const audio = new Audio(selectedSound);
     audio.volume = 0.6;
-    audio.play();
+    try {
+      await audio.play();
+    } catch (err) {
+      // Play interrupted (autoplay policy or other); ignore safely
+      console.warn("audio play failed:", err);
+    }
   };
 
   return (
@@ -98,19 +105,26 @@ const SharedCanvas = ({ color }: SharedCanvasProps) => {
         {name} <LuVolume2 />
       </button>
       {/* Canvas */}
-      <Canvas camera={{ position: [1.5, 2, 0], fov: 7 }}>
-        <Stage
-          adjustCamera
-          intensity={0.5}
-          shadows={"contact"}
-          environment="city"
+      <Canvas
+        camera={{ position: [1.5, 2, 0], fov: 7 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
+        frameloop="demand"
+      >
+        <AdaptiveDpr />
+        <AdaptiveEvents />
+        <Suspense
+          fallback={
+            <Html fullscreen>
+              <Loader />
+            </Html>
+          }
         >
-          <Switch
-            rotation={[0, Math.PI / 4, 0]}
-            color={colorName}
-            hexColor={hexColor || ""}
-          />
-        </Stage>
+          <Stage adjustCamera intensity={0.5} shadows={"contact"} environment="city">
+            <Switch rotation={[0, Math.PI / 4, 0]} color={colorName} hexColor={hexColor || ""} />
+          </Stage>
+          <Preload all />
+        </Suspense>
       </Canvas>
       <div
         className={clsx(

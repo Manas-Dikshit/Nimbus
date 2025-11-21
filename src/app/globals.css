@@ -1,24 +1,55 @@
+/* ----------------------------------------------------------
+   🌐 Global Styles — Enhanced Tailwind + Custom Theme Layer
+-----------------------------------------------------------*/
+
 @import "tailwindcss";
 
+/* ----------------------------------------
+   🎨 Theme Configuration
+   Define global fonts, typography, colors, and shadows.
+---------------------------------------- */
 @theme inline {
+  /* Font families */
   --font-sans: var(--font-roboto-flex), Arial, Helvetica, sans-serif;
 
+  /* Font variations (slanted, variable weight) */
   --font-black-slanted: var(--font-roboto-flex);
   --font-black-slanted--font-variation-settings:
-    "wdth" var(--wdth, 100), "slnt" var(--slnt, -10), "opsz" var(--opsz, 144),
+    "wdth" var(--wdth, 100),
+    "slnt" var(--slnt, -10),
+    "opsz" var(--opsz, 144),
     "wght" var(--wght, 1000);
 
   --font-bold-slanted: var(--font-roboto-flex);
   --font-bold-slanted--font-variation-settings:
-    "wdth" var(--wdth, 74), "slnt" var(--slnt, -10), "opsz" var(--opsz, 100),
+    "wdth" var(--wdth, 74),
+    "slnt" var(--slnt, -10),
+    "opsz" var(--opsz, 100),
     "wght" var(--wght, 600);
+
+  /* Color Palette */
+  --color-primary: #0f172a; /* dark navy */
+  --color-secondary: #062f4a; /* deep blue */
+  --color-accent: #7fa0b9; /* muted sky */
+  --color-light: #f8fafc; /* off-white */
+  --color-dark: #000000;
+
+  /* Shadows & Depth */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-deep: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+  /* Animation defaults */
+  --animation-duration: 30s;
+  --animation-timing: linear;
 }
 
+/* ----------------------------------------
+   🌀 Marquee Animation
+---------------------------------------- */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
   }
-
   100% {
     transform: translateX(-50%);
   }
@@ -26,17 +57,81 @@
 
 .animate-marquee {
   animation-name: marquee;
-  animation-duration: 30s;
-  animation-timing-function: linear;
+  animation-duration: var(--animation-duration);
+  animation-timing-function: var(--animation-timing);
   animation-iteration-count: infinite;
+  will-change: transform;
 }
 
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;
   }
 }
 
+/* ----------------------------------------
+   🌈 Gradients
+---------------------------------------- */
+
+/* Enhanced gradient background */
 .blue-gradient-bg {
-  background: linear-gradient(to bottom, #000000, #0f172a, #062f4a, #7fa0b9);
+  background: linear-gradient(
+    to bottom,
+    var(--color-dark),
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-accent)
+  );
+}
+
+/* Gradient utilities for text or hover states */
+.text-gradient {
+  background: linear-gradient(to right, #60a5fa, #3b82f6, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hover-gradient:hover {
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  transition: background 0.4s ease;
+}
+
+/* ----------------------------------------
+   🌑 Dark Mode Enhancements
+---------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+  }
+
+  .blue-gradient-bg {
+    background: linear-gradient(
+      to bottom,
+      #0f172a,
+      #1e293b,
+      #334155,
+      #64748b
+    );
+  }
+}
+
+/* ----------------------------------------
+   💫 Utility Enhancements
+---------------------------------------- */
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-deep {
+  box-shadow: var(--shadow-deep);
+}
+
+.transition-base {
+  transition: all 0.3s ease-in-out;
+}
+
+.container-padded {
+  @apply px-4 sm:px-6 lg:px-8;
 }

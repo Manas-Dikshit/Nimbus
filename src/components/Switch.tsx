@@ -2,7 +2,7 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { ThreeEvent } from "@react-three/fiber";
+import { ThreeEvent, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 
 export const SOUND_MAP = {
@@ -29,6 +29,7 @@ type SwitchProps = React.ComponentProps<"group"> & {
 };
 
 export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
+  const { invalidate } = useThree();
   const { nodes } = useGLTF("/switch.gltf") as unknown as GLTFResult;
   const switchGroupRef = useRef<THREE.Group>(null);
   const stemRef = useRef<THREE.Mesh>(null);
@@ -43,7 +44,7 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
     }),
   );
 
-  const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
+  const handlePointerDown = async (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation();
 
     if (!stemRef.current || !switchGroupRef.current || isPressedRef.current)
@@ -59,24 +60,38 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
     gsap.to(switchGroup.rotation, {
       x: Math.PI / 2 + 0.1,
       duration: 0.05,
-      ease: "power2.out", 
+      ease: "power2.out",
+      onUpdate: () => invalidate(),
     });
 
     gsap.to(stem.position, {
       z: 0.005,
       duration: 0.08,
       ease: "power2.out",
+      onUpdate: () => invalidate(),
     });
 
     // Audio
 
-    audio.current = gsap.utils.random(allAudio.current);
-    audio.current.currentTime = 0;
-    audio.current.play();
-    audioTimeout.current = setTimeout(
-      () => audio.current?.pause(),
-      (audio.current.duration / 2) * 1000,
-    );
+    // pick a random preloaded audio element
+    const picked = (audio.current = gsap.utils.random(allAudio.current));
+    picked.currentTime = 0;
+
+    try {
+      // await the play() promise so we don't race with an immediate pause
+      await picked.play();
+    } catch (err) {
+      // If play() is interrupted (autoplay policy or other), just log and continue
+      console.warn("audio play failed:", err);
+    }
+
+    // duration may be NaN/0 until metadata is available. Use a sensible fallback
+    const pauseMs =
+      Number.isFinite(picked.duration) && picked.duration > 0
+        ? (picked.duration / 2) * 1000
+        : 400; // fallback to 400ms
+
+    audioTimeout.current = setTimeout(() => picked.pause(), pauseMs);
   };
 
   const releaseSwitch = () => {
@@ -91,16 +106,28 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
       x: Math.PI / 2,
       duration: 0.6,
       ease: "elastic.out(1,0.3)",
+      onUpdate: () => invalidate(),
     });
 
     gsap.to(stem.position, {
       z: 0,
       duration: 0.15,
       ease: "elastic.out(1, 0.3)",
+      onUpdate: () => invalidate(),
     });
 
     if (audioTimeout.current) clearTimeout(audioTimeout.current);
-    audio.current?.play();
+
+    // Try to play again on release; ignore rejections to avoid uncaught promise warnings
+    try {
+      audio.current && audio.current.currentTime === 0 && (audio.current.currentTime = 0);
+      const p = audio.current?.play();
+      p?.catch(() => {
+        /* noop */
+      });
+    } catch (err) {
+      // ignore
+    }
   };
 
   const handlePointerUp = (event: ThreeEvent<PointerEvent>) => {
